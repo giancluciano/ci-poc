@@ -1,0 +1,24 @@
+replicaCount: 2
+
+image:
+  repository: flask-app
+  tag: latest
+  pullPolicy: Never  # Use local images in Minikube
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 5000
+  nodePort: 30080
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 250m
+    memory: 256Mi
+
+env:
+  APP_VERSION: "1.0.0"
+  ENVIRONMENT: "development"
